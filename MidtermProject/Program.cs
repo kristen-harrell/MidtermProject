@@ -7,6 +7,7 @@ namespace MidtermProject
         static void Main(string[] args)
         {
             Console.WriteLine("Midterm Project");
+            Console.WriteLine("Test change2");
         }
     }
 }
