@@ -7,27 +7,28 @@ namespace MidtermProject
 {
     class Cash : Payment
     {
-        public int userCash { get; set; }
+        public int UsersCash { get; set; }
         public Cash(double Amount, int userCash) :base(Amount)
         {
-            this.userCash = userCash;
+            this.UsersCash = userCash;
         }
         public double GetChange()
         {
             while (true)
             {
-                if (userCash >= Amount)
+                if (UsersCash >= Amount)
                 {
-                    double change = userCash - Amount;
+                    double change = UsersCash - Amount;
                     Console.WriteLine(change);
                     return change;
                 }
-                if (userCash < Amount)
+                if (UsersCash < Amount)
                 {
                     Console.WriteLine("Insufficient cash");
                     continue;
-                } 
+                }
             }
+        }
             //while (userCash <= Amount)
 
         public double UserCash { get; set; }
@@ -63,14 +64,6 @@ namespace MidtermProject
             //    double change = userCash - Amount;
             //    Console.WriteLine(change);
             //}
-
-            
         }
     }
 }
-
-
-        }
-    }
-}
-

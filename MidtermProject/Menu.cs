@@ -57,7 +57,7 @@ namespace MidtermProject
                 string expiration = GetUserInput("Input the expiration date [MM/YY]");
                 int securityCw = int.Parse(GetUserInput("Input the security number (CW)"));
                 Credit credit1 = new Credit(amount, cardNumber, expiration, securityCw);
-                credit1.PayWithCredit(amount);
+                credit1.PayWithCredit();
             }
             else if (paymentType == "check")
             {
