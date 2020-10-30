@@ -7,8 +7,8 @@ namespace MidtermProject
 {
     class Cash : Payment
     {
-        public int UserCash { get; set; }
-        public Cash(double amount, int userCash) : base(amount)
+        public double UserCash { get; set; }
+        public Cash(double amount, double userCash) : base(amount)
         {
             this.UserCash = userCash;
         }
@@ -19,7 +19,7 @@ namespace MidtermProject
                 if (userCash >= amount)
                 {
                     double change = userCash - amount;
-                    Console.WriteLine(change);
+                    Console.WriteLine($"Your change is {change}");
                     return change;
                 }
                 if (userCash < amount)

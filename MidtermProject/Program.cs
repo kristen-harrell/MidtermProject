@@ -17,7 +17,7 @@ namespace MidtermProject
             ////Menu.GetDetail(); <== this method needs to finish getting built
 
             //Console.WriteLine("Enter the number of the item that you want to learn more about:  ");
-            //Console.WriteLine("How do you want to pay?");
+            Console.WriteLine("How do you want to pay?");
             string paymentType = Console.ReadLine();
             double amount = 50;
             Menu.SelectPayment(paymentType, amount); //<== type in the () method of payment
