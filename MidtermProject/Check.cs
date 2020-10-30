@@ -11,7 +11,6 @@ namespace MidtermProject
         {
             this.CheckNumber = checkNumber;
         }
-
         public void PayWithCheck(double amount, int checkNumber)
         {
             Console.WriteLine($"You have paid the total of {amount} with Check# {checkNumber}");

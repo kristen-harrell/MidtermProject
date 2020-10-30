@@ -9,16 +9,15 @@ namespace MidtermProject
         public string CardNumber { get; set; }
         public string Expiration { get; set; }
         public int SecurityCw { get; set; }
-        public Credit(double amount, string cardNumber, string expiration, int securityCw) : base(amount)
+        public Credit(double Amount, string cardNumber, string expiration, int securityCw) :base(Amount)
         {
             this.CardNumber = cardNumber;
             this.Expiration = expiration;
             this.SecurityCw = securityCw;
         }
-
-        public void PayWithCredit(double amount)
+        public void PayWithCredit()
         {
-            Console.WriteLine($"You've payed the total of ${amount} with credit.");
+            Console.WriteLine($"You've payed the total of {Amount} with credit.");
         }
     }
 }
