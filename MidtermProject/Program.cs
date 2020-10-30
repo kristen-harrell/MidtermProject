@@ -11,6 +11,7 @@ namespace MidtermProject
         static void Main(string[] args)
         {
 
+
             Console.WriteLine("Welcome to our store!!");
             Console.WriteLine("These are the items that we have available for sale.");
 
@@ -98,6 +99,8 @@ namespace MidtermProject
 
 
 
+            Menu.PrintStore();
+
 
             double amount = 50;
 
@@ -133,5 +136,14 @@ namespace MidtermProject
             string UserInput = Console.ReadLine();
             return UserInput;
         }
+            //public static void PrintStore()
+            //{
+            //    StreamReader reader = new StreamReader("../../../MenuItems.txt");
+            //    string itemsForSale = reader.ReadLine();
+
+
+            //    reader.Close();
+            //    Console.WriteLine(itemsForSale);
+            //}
     }
 }

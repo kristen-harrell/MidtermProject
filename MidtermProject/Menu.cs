@@ -12,19 +12,25 @@ namespace MidtermProject
     {
         //public List<Item> Items { get; set } <== I need to know what the text file list class is called so I can link it in here
 
-        
+        public static void PrintStore()
+        {
+            List<string> itemsForSale = new List<string>();
+            StreamReader reader = new StreamReader("../../../MenuItems.txt");
+            string material = reader.ReadLine();
+            while(material != null)
+            {
+                itemsForSale.Add(material);
+                material = reader.ReadLine();
+            }
+            reader.Close();
 
+            for (int i = 0; i < itemsForSale.Count; i++)
+            {
+                Console.WriteLine($"#{i+1}:  {itemsForSale[i]}");
+            }
+           
+        }
 
-
-
-        //public static void PrintStore()
-        //{
-        //    for (int i = 0; i < Items.Count; i++)
-        //    {
-        //        Console.WriteLine($ "Item: {Items[i]} Price: {Price[i]}");
-        //    }
-
-        //}
 
         public static void DisplayLineTotal()
         {
