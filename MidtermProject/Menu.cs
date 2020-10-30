@@ -26,16 +26,13 @@ namespace MidtermProject
 
         //}
 
-        //public double DisplayTotal()
-        //{
-        //    for (int i = 0; i < length; i++)
-        //    {
-        //        // qty * item = line 1 total
-        //        // loop this over for each item in the dictionary
-        //        // if the qty ordered is 0, the math will still work out
-
-        //    }
-        //}
+        public static void DisplayLineTotal()
+        {
+            //item[i] * quantity
+            //"You selected (item) x (quantity). That's (price) Would you like to checkout now or continue shopping?"
+            //if user response == y
+            //return to 
+        }
 
         public static void SelectPayment(string paymentType, double amount) //<-- change this from void to payment once it's created 
                                                                             // in the () you can type the message "how do you want to pay today
