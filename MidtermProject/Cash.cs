@@ -7,6 +7,29 @@ namespace MidtermProject
 {
     class Cash : Payment
     {
+        public int userCash { get; set; }
+        public Cash(double Amount, int userCash) :base(Amount)
+        {
+            this.userCash = userCash;
+        }
+        public double GetChange()
+        {
+            while (true)
+            {
+                if (userCash >= Amount)
+                {
+                    double change = userCash - Amount;
+                    Console.WriteLine(change);
+                    return change;
+                }
+                if (userCash < Amount)
+                {
+                    Console.WriteLine("Insufficient cash");
+                    continue;
+                } 
+            }
+            //while (userCash <= Amount)
+
         public double UserCash { get; set; }
         public Cash(double amount, double userCash) : base(amount)
         {
@@ -29,6 +52,7 @@ namespace MidtermProject
                 }
             }
             //while (userCash <= Amount)  ```````````Brian had this commented out, so I left it this way````````
+
             //{
             //    // Payment option question
             //    if (userCash < Amount)
@@ -40,6 +64,13 @@ namespace MidtermProject
             //    Console.WriteLine(change);
             //}
 
+            
         }
     }
 }
+
+
+        }
+    }
+}
+

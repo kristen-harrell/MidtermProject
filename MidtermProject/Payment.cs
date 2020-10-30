@@ -10,6 +10,17 @@ namespace MidtermProject
         // 2. Constructor
         // 3. Methods
 
+        
+        public double Amount { get; set; }
+
+        public Payment(double Amount)
+        {
+            this.Amount = Amount;
+        }
+    }
+}
+
+
         public double Amount { get; set; }
 
         public Payment(double amount)
@@ -18,3 +29,4 @@ namespace MidtermProject
         }
     }
 }
+
