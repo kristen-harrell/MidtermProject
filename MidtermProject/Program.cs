@@ -7,6 +7,7 @@ namespace MidtermProject
         static void Main(string[] args)
         {
 
+
             double amount = 55.50;
 
             //int checkNumber = int.Parse(GetUserInput("Please input your check number"));
@@ -29,6 +30,10 @@ namespace MidtermProject
             string UserInput = Console.ReadLine();
             return UserInput;
 
+            Console.WriteLine("Midterm Project");
+
+
+
             //Console.WriteLine("Midterm Project");
 
             //Console.WriteLine("Welcome to our store!!");
@@ -44,6 +49,7 @@ namespace MidtermProject
             string paymentType = Console.ReadLine();
             double amount = 50;
             Menu.SelectPayment(paymentType, amount); //<== type in the () method of payment
+
 
         }
     }
