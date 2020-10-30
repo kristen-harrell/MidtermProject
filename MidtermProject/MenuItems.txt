@@ -1,0 +1,12 @@
+﻿Heavy Combat Boots|Footwear|Intimidate friends and foes alike with these impractically large boots|74.99
+Floppy Sun Hat|Headwear|Give yourself 360 degrees of protection with this whimsical wide-brimmed hat|29.99
+Tartan Socks|Ready to wear|Show off your stuffy side with with a tried and true pattern|17.79
+Cool Leather Jacket|Outerwear|It's a leather jacket. What more do you need to know?|99.99
+Acid-Washed Bellbottoms|Ready to Wear|Take a trip back to the 60s with these rad jeans, man|34.99
+Floral Flip-Flops|Footwear|Announce your presence from a block away with these Summer slappers|12.99
+Puffy Jacket|Outerwear|Leather not your thing? Prepare for Michigan winters with this light but toasty jacket|139.99
+Fuzzy Slippers|Footwear|These slippers are perfect for lazy Sundays and long coding sessions alike|22.49
+Argyle Pocket Square|Accessories|Turn heads at the next brunch with this subtle piece|19.95
+Studded Belt|Accessories|Live out your rockstar fantasies with this striking belt, complete with eyecatching studs|66.95
+Tie-Dye Tee|Ready to Wear|Sure, you could make one of these yourself in an afternoon. But that's too much trouble|17.59
+Sharp Bowtie|Accessories|Dress to impress with this sleek black bowtie (Tuxedo not included)|32.37

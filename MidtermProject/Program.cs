@@ -6,6 +6,10 @@ namespace MidtermProject
     {
         static void Main(string[] args)
         {
+
+            Console.WriteLine("Midterm Project");
+
+
             //Console.WriteLine("Midterm Project");
 
             //Console.WriteLine("Welcome to our store!!");
@@ -21,6 +25,7 @@ namespace MidtermProject
             string paymentType = Console.ReadLine();
             double amount = 50;
             Menu.SelectPayment(paymentType, amount); //<== type in the () method of payment
+
 
         }
     }
