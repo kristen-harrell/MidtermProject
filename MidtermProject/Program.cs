@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
+using System.IO;
 
 namespace MidtermProject
 {
@@ -52,6 +53,15 @@ namespace MidtermProject
             //{
             //    Brian, Rachel, Kakashi, Sam, Sephiroth
             //};
+            StreamReader reader = new StreamReader("../../../MenuItems.txt");
+            string itemsForSale = reader.ReadLine();
+            reader.Close();
+            Console.WriteLine(itemsForSale);
+
+
+
+
+            double amount = 50;
 
             //int checkNumber = int.Parse(GetUserInput("Please input your check number"));
             //Check check1 = new Check(amount, checkNumber);
