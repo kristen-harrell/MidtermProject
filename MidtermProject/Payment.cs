@@ -9,6 +9,7 @@ namespace MidtermProject
         // 1. Properties and variables
         // 2. Constructor
         // 3. Methods
+
         
         public double Amount { get; set; }
 
@@ -18,3 +19,14 @@ namespace MidtermProject
         }
     }
 }
+
+
+        public double Amount { get; set; }
+
+        public Payment(double amount)
+        {
+            this.Amount = amount;
+        }
+    }
+}
+

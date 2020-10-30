@@ -29,6 +29,30 @@ namespace MidtermProject
                 } 
             }
             //while (userCash <= Amount)
+
+        public double UserCash { get; set; }
+        public Cash(double amount, double userCash) : base(amount)
+        {
+            this.UserCash = userCash;
+        }
+        public double GetChange(double userCash, double amount)
+        {
+            while (true)
+            {
+                if (userCash >= amount)
+                {
+                    double change = userCash - amount;
+                    Console.WriteLine($"Your change is {change}");
+                    return change;
+                }
+                if (userCash < amount)
+                {
+                    Console.WriteLine("Insufficient cash");
+                    continue;
+                }
+            }
+            //while (userCash <= Amount)  ```````````Brian had this commented out, so I left it this way````````
+
             //{
             //    // Payment option question
             //    if (userCash < Amount)
@@ -39,7 +63,14 @@ namespace MidtermProject
             //    double change = userCash - Amount;
             //    Console.WriteLine(change);
             //}
+
             
         }
     }
 }
+
+
+        }
+    }
+}
+
