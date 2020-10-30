@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.IO;
 using System.Text;
 using System.Xml;
 
@@ -11,7 +12,7 @@ namespace MidtermProject
     {
         //public List<Item> Items { get; set } <== I need to know what the text file list class is called so I can link it in here
 
-
+        
 
 
 

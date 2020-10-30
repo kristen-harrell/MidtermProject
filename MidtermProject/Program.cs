@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
 
 namespace MidtermProject
 {
@@ -6,6 +8,14 @@ namespace MidtermProject
     {
         static void Main(string[] args)
         {
+            StreamReader reader = new StreamReader("../../../MenuItems.txt");
+            string itemsForSale = reader.ReadLine();
+            reader.Close();
+            Console.WriteLine(itemsForSale);
+
+
+
+
             double amount = 50;
 
             //int checkNumber = int.Parse(GetUserInput("Please input your check number"));
