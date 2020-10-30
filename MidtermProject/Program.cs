@@ -8,12 +8,8 @@ namespace MidtermProject
     {
         static void Main(string[] args)
         {
-            StreamReader reader = new StreamReader("../../../MenuItems.txt");
-            string itemsForSale = reader.ReadLine();
-            reader.Close();
-            Console.WriteLine(itemsForSale);
 
-
+            Menu.PrintStore();
 
 
             double amount = 50;
@@ -25,12 +21,12 @@ namespace MidtermProject
             //Cash cash1 = new Cash(amount, cash);
             //cash1.GetChange();
 
-            string cardNumber = GetUserInput("Input your card number");
-            string expiration = GetUserInput("Input the expiration date [MM/YY]");
-            int securityCw = int.Parse(GetUserInput("Input the security number (CW)"));
-            Credit credit1 = new Credit(amount, cardNumber, expiration, securityCw);
-            credit1.PayWithCredit();
-            Console.WriteLine("Midterm Project");
+            //string cardNumber = GetUserInput("Input your card number");
+            //string expiration = GetUserInput("Input the expiration date [MM/YY]");
+            //int securityCw = int.Parse(GetUserInput("Input the security number (CW)"));
+            //Credit credit1 = new Credit(amount, cardNumber, expiration, securityCw);
+            //credit1.PayWithCredit();
+            //Console.WriteLine("Midterm Project");
 
             //Console.WriteLine("Midterm Project");
             //Console.WriteLine("Welcome to our store!!");
@@ -49,5 +45,14 @@ namespace MidtermProject
             string UserInput = Console.ReadLine();
             return UserInput;
         }
+            //public static void PrintStore()
+            //{
+            //    StreamReader reader = new StreamReader("../../../MenuItems.txt");
+            //    string itemsForSale = reader.ReadLine();
+
+
+            //    reader.Close();
+            //    Console.WriteLine(itemsForSale);
+            //}
     }
 }
