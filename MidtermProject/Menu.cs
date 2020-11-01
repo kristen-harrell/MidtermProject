@@ -41,7 +41,7 @@ namespace MidtermProject
                     Console.WriteLine("Sorry. That is not an accepted method of payment. Please try again.");
                     valid = true;
                 }
-                //public static object GetDetail() //<== rename 'object' to Item 
+                //p ublic static object GetDetail() //<== rename 'object' to Item 
                 //{
                 //    //get the input number that coordinates with the item number and show all the info on it
                 //} 
