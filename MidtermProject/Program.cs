@@ -19,16 +19,15 @@ namespace MidtermProject
             while (continueShopping == true)
             {
                 Menu.PrintStore();
-
+                //=================================================== Kristen:
                 Console.WriteLine("Please select an item via its corresponding number to learn more about it.");
                 string userInput = Console.ReadLine();
                 int selection = int.Parse(userInput);
-
+                //this needs to read the items from the text file/list and dispay the selection that the user picked.
                 Console.WriteLine("You selected:");
                 Console.WriteLine();
-
                 ////Menu.GetDetail(selection); <== this method needs to finish getting built
-
+                //=====================================================
                 Console.WriteLine("Would you like to purchase this item?");
                 userInput = Console.ReadLine();
 
@@ -41,22 +40,22 @@ namespace MidtermProject
                 {
                     Console.WriteLine("Wonderful! How many would you like?");
                     int quantity = int.Parse(Console.ReadLine());
-
-                   // DisplayLineTotal(int quantity);
-
-                    Console.WriteLine();
+//====================================================================================
+                   // this need to add the qty and item to the shopping cart - Brian
+//=====================================================================================
+                    Console.WriteLine(); //spacing.
                 }
             }
-
-            List<Cart> ShoppingCart = new List<Cart> { };
+            //==================================================================
+            //go to checkout or go to main menu to continue shopping - Alex
+            //==================================================================
+            //========================================================================================
+            List<Cart> ShoppingCart = new List<Cart> { }; //written by Brian - need to take the customer's input (item they picked) and add that to the cart
             while (true)
             {
-                string userItem = GetUserInput("Input example item\n");
-                double inputAmount = double.Parse(GetUserInput("Input example amount\n"));
-                int userQuantity = int.Parse(GetUserInput("Input quantity\n"));
-                Cart userCart = new Cart(userItem, inputAmount, userQuantity);
-                ShoppingCart.Add(userCart);
-                string userContinue = GetUserInput("Add another item to your cart?\n");
+                //Cart userCart = new Cart(userItem, inputAmount, userQuantity);
+                //ShoppingCart.Add(userCart);
+                string userContinue = GetUserInputYN("Add another item to your cart?\n");
                 if (userContinue == "y")
                 {
                     continue;
@@ -70,11 +69,16 @@ namespace MidtermProject
             string itemsForSale = reader.ReadLine();
             reader.Close();
             Console.WriteLine(itemsForSale);
+            //==============================================================================================
+            ///////////////Alex:
+            //Create a checkout 
+            //give total (saved in a Double called grandTotal)
+            //ask for payment type and route it accordingly
+            //done here is your receipt
 
 
-
-            Menu.PrintStore();
-
+            //write method to generate receipt
+            //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
             List<Item> cartOfItems = Item.GetItems(); // creating a list that will become the shopping cart
             Item sweater = new Item("sweater", "outerwear", "blue cableknit pullover", 14.99); //identifying what the item will be
             cartOfItems.Add(sweater); //adding it to the list
@@ -95,24 +99,10 @@ namespace MidtermProject
             Console.WriteLine($"Your subtotal is: {subtotal:c}");
             Console.WriteLine($"MI State sales tax: {salesTax:c}");
             Console.WriteLine($"This brings your total to: {billTotal:c}");
-
+            //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         }
 
-        public static string GetUserInput(string message)
-        {
-            Console.WriteLine(message);
-            string UserInput = Console.ReadLine();
-            return UserInput;
-        }
-        //public static void PrintStore()
-        //{
-        //    StreamReader reader = new StreamReader("../../../MenuItems.txt");
-        //    string itemsForSale = reader.ReadLine();
-
-
-        //    reader.Close();
-        //    Console.WriteLine(itemsForSale);
-        //}
+        
 
         public static string GetUserInputYN(string message)
         {
@@ -162,7 +152,7 @@ namespace MidtermProject
             }
         }
 
-        public static void PrintCart()
+        public static void PrintCart() //part of the receipt method - WIP
         {
             List<string> shoppingCartFull = new List<string>();
             StreamReader reader = new StreamReader("../../../ShoppingCart.txt");
