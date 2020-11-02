@@ -56,16 +56,14 @@ namespace MidtermProject
                                                                             // in the () you can type the message "how do you want to pay today
                                                                             //and return that response to then divert to one of these choices
         {
-            bool valid = true;
-            while (valid == true)
-            {
-                if (paymentType == "cash")
+
+                if (paymentType == "1")
                 {
                     double cash = double.Parse(GetUserInput("How much are you paying with in cash?: "));
                     Cash cash1 = new Cash(amount, cash);
                     cash1.GetChange(cash, amount);
                 }
-                if (paymentType == "creditCard")
+                if (paymentType == "2")
                 {
                     string cardNumber = GetUserInput("Input your card number");
                     string expiration = GetUserInput("Input the expiration date [MM/YY]");
@@ -73,18 +71,12 @@ namespace MidtermProject
                     Credit credit1 = new Credit(amount, cardNumber, expiration, securityCw);
                     credit1.PayWithCredit();
                 }
-                else if (paymentType == "check")
+                else if (paymentType == "3")
                 {
                     int checkNumber = int.Parse(GetUserInput("Please input your check number"));
                     Check check1 = new Check(amount, checkNumber);
                     check1.PayWithCheck(amount, checkNumber);
                 }
-                else
-                {
-                    Console.WriteLine("Sorry. That is not an accepted method of payment. Please try again.");
-                    valid = true;
-                }
-            }
         }
         static string GetUserInput(string message)
         {
