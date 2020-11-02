@@ -4,14 +4,14 @@ using System.Text;
 
 namespace MidtermProject
 {
-    class Item
+    class Product
     {
         public string Name { get; set; }
         public string Category { get; set; }
         public string Description { get; set; }
         public double Price { get; set; }
 
-        public Item (string name, string category, string description, double price)
+        public Product (string name, string category, string description, double price)
         {
             Name = name;
             Category = category;
@@ -19,11 +19,11 @@ namespace MidtermProject
             Price = price;
         }
 
-        public static List<Item> GetItems()
+        public static List<Product> GetProducts()
         {
-            List<Item> itemToBuy = new List<Item>()
+            List<Product> itemToBuy = new List<Product>()
             {
-                new Item("coat", "outerwear", "comfy blue coat", 13.99),
+                new Product("coat", "outerwear", "comfy blue coat", 13.99),
             };
 
             return itemToBuy;

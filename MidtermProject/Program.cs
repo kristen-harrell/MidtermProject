@@ -2,16 +2,17 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
+using System.Linq;
 using System.IO;
 
 namespace MidtermProject
 {
     class Program
     {
+
+
         static void Main(string[] args)
         {
-
-
             Console.WriteLine("Welcome to our store!!");
             Console.WriteLine("These are the items that we have available for sale.");
 
@@ -36,10 +37,12 @@ namespace MidtermProject
                     Console.WriteLine("That's OK. Returning to the main menu.");
                     continueShopping = false;
                 }
+
                 else if (userInput == "y")
                 {
                     Console.WriteLine("Wonderful! How many would you like?");
                     int quantity = int.Parse(Console.ReadLine());
+
 //====================================================================================
                    // this need to add the qty and item to the shopping cart - Brian
 //=====================================================================================
@@ -64,7 +67,14 @@ namespace MidtermProject
                 {
                     break;
                 }
+
             }
+            foreach (Cart item in ShoppingCart) // We created a temporary variable name for our Person object called 'peep'
+            {
+                item.DisplayCart();
+                Console.WriteLine();
+            }
+            Console.WriteLine();
             StreamReader reader = new StreamReader("../../../MenuItems.txt");
             string itemsForSale = reader.ReadLine();
             reader.Close();
@@ -77,14 +87,16 @@ namespace MidtermProject
             //done here is your receipt
 
 
+
             //write method to generate receipt
             //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
             List<Item> cartOfItems = Item.GetItems(); // creating a list that will become the shopping cart
             Item sweater = new Item("sweater", "outerwear", "blue cableknit pullover", 14.99); //identifying what the item will be
+
             cartOfItems.Add(sweater); //adding it to the list
             double subtotal = 0; //declaring a variable to keep the customer's running total adding up
             StreamWriter writer = new StreamWriter("../../../ShoppingCart.txt"); //gaining access to the file
-            foreach (Item item in cartOfItems) //this loop is adding everything to the file
+            foreach (Product item in cartOfItems) //this loop is adding everything to the file
             {
                 writer.WriteLine($"{item.Name,-15} |     {item.Category,-15} |     {item.Description,-30} |     {item.Price:c}", -30);
                 subtotal += item.Price;
@@ -94,15 +106,23 @@ namespace MidtermProject
             double salesTax = subtotal * .06;
             double billTotal = subtotal + salesTax;
             PrintCart();
+            //int checkNumber = int.Parse(GetUserInput("Please input your check number"));
+            //Check check1 = new Check(amount, checkNumber);
+            //check1.PayWithCheck();
+            //int cash = int.Parse(GetUserInput("How much are you paying with in cash?"));
+            //Cash cash1 = new Cash(amount, cash);
+            //cash1.GetChange();
 
             Console.WriteLine("======RECEIPT===============");
             Console.WriteLine($"Your subtotal is: {subtotal:c}");
             Console.WriteLine($"MI State sales tax: {salesTax:c}");
             Console.WriteLine($"This brings your total to: {billTotal:c}");
+
             //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-        }
+        
 
         
+
 
         public static string GetUserInputYN(string message)
         {
@@ -170,5 +190,6 @@ namespace MidtermProject
             }
 
         }
+
     }
 }

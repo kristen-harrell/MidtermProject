@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.Tracing;
 using System.IO;
 using System.Text;
 using System.Xml;
@@ -14,31 +15,42 @@ namespace MidtermProject
 
         public static void PrintStore()
         {
-            List<string> itemsForSale = new List<string>();
+            List<Product> itemsForSale = new List<Product>();
+
             StreamReader reader = new StreamReader("../../../MenuItems.txt");
-            string material = reader.ReadLine();
-            while(material != null)
+
+            string line = reader.ReadLine();
+            while (line != null)
             {
-                itemsForSale.Add(material);
-                material = reader.ReadLine();
+                string[] itemProperties = line.Split("|");
+
+                itemsForSale.Add(new Product(itemProperties[0], itemProperties[1], itemProperties[2], double.Parse(itemProperties[3])));
+
+                line = reader.ReadLine();
             }
+
             reader.Close();
 
-            for (int i = 0; i < itemsForSale.Count; i++)
+            int counter = 1; // initializing counter for menu items
+
+            foreach (Product product in itemsForSale)
             {
-                Console.WriteLine($"#{i+1}:  {itemsForSale[i]}");
+                Console.WriteLine($"{counter}) {product.Name}");
+                counter++; // counter goes up after each iteration
             }
-           
+
         }
 
 
-        public static void DisplayLineTotal()
-        {
-            //item[i] * quantity
-            //"You selected (item) x (quantity). That's (price) Would you like to checkout now or continue shopping?"
-            //if user response == y
-            //return to 
-        }
+        //public static void DisplayLineTotal()
+        //{
+
+        //    Console.WriteLine($"You selected {Product.Name} x {quantity}. That's ({Product.Price} * 4). Would you like to checkout now or continue shopping?"
+        //    if (userresponse == "y")
+        //    {
+
+        //        return to
+        //}
 
         public static void SelectPayment(string paymentType, double amount) //<-- change this from void to payment once it's created 
                                                                             // in the () you can type the message "how do you want to pay today
@@ -47,14 +59,12 @@ namespace MidtermProject
             bool valid = true;
             while (valid == true)
             {
-                //string paymentType = Console.ReadLine(); //<-- I think we should move this method to the program
                 if (paymentType == "cash")
                 {
                     double cash = double.Parse(GetUserInput("How much are you paying with in cash?: "));
                     Cash cash1 = new Cash(amount, cash);
                     cash1.GetChange(cash, amount);
                 }
-                //pull cash method which will prompt accordingly
                 if (paymentType == "creditCard")
                 {
                     string cardNumber = GetUserInput("Input your card number");
@@ -74,10 +84,6 @@ namespace MidtermProject
                     Console.WriteLine("Sorry. That is not an accepted method of payment. Please try again.");
                     valid = true;
                 }
-                //public static object GetDetail() //<== rename 'object' to Item 
-                //{
-                //    //get the input number that coordinates with the item number and show all the info on it
-                //} 
             }
         }
         static string GetUserInput(string message)
@@ -87,11 +93,12 @@ namespace MidtermProject
             return UserInput;
         }
 
-        //static string GetReceipt()
-        //{
-        //    Console.WriteLine("Thanks for shopping with us.  Here is your receipt: ");
 
+        public static void GetDetail(List<Product> listOfItems)
+        {
+            List<Product> itemsForSale;
+            //Console.WriteLine($"{counter}) {product.Name}");
+        }
 
-        //}
     }
 }
