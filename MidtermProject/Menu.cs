@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.IO;
 using System.Text;
 using System.Xml;
 
@@ -9,7 +10,36 @@ namespace MidtermProject
 {
     class Menu
     {
-        public static void SelectPayment(string paymentType, double amount)
+        //public List<Item> Items { get; set } <== I need to know what the text file list class is called so I can link it in here
+
+        
+
+
+
+
+        //public static void PrintStore()
+        //{
+        //    for (int i = 0; i < Items.Count; i++)
+        //    {
+        //        Console.WriteLine($ "Item: {Items[i]} Price: {Price[i]}");
+        //    }
+
+        //}
+
+        //public double DisplayTotal()
+        //{
+        //    for (int i = 0; i < length; i++)
+        //    {
+        //        // qty * item = line 1 total
+        //        // loop this over for each item in the dictionary
+        //        // if the qty ordered is 0, the math will still work out
+
+        //    }
+        //}
+
+        public static void SelectPayment(string paymentType, double amount) //<-- change this from void to payment once it's created 
+                                                                            // in the () you can type the message "how do you want to pay today
+                                                                            //and return that response to then divert to one of these choices
         {
             bool valid = true;
             while (valid == true)
