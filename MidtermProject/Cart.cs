@@ -9,7 +9,7 @@ namespace MidtermProject
         public string Item { get; set; }
         public double Amount { get; set; }
         public int Quantity { get; set; }
-
+        List<double> grandTotal = new List<double> { };
         public Cart()
         {
 
@@ -22,8 +22,12 @@ namespace MidtermProject
         }
         public void DisplayCart()
         {
+            double salesTax = 0.06;
             Console.WriteLine($"Item: { Item } x {Quantity}");
-            Console.WriteLine($"Amount: ${ Amount * Quantity }");
+            double total = (Amount * Quantity);
+            double totalWithTax = (total * salesTax) + total;
+            Console.WriteLine($"Amount (sales tax included): ${totalWithTax}");
+            grandTotal.Add(totalWithTax);
         }
     }
     

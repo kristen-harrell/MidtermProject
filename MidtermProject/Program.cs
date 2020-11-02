@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
+using System.Linq;
 using System.IO;
 
 namespace MidtermProject
@@ -12,7 +13,6 @@ namespace MidtermProject
 
         static void Main(string[] args)
         {
-
             Console.WriteLine("Welcome to our store!!");
             Console.WriteLine("These are the items that we have available for sale.");
 
@@ -50,42 +50,27 @@ namespace MidtermProject
                 }
             }
 
+            //Brian
             List<Cart> ShoppingCart = new List<Cart> { };
-            while (true)
             {
                 string userItem = GetUserInput("Input example item\n");
                 double inputAmount = double.Parse(GetUserInput("Input example amount\n"));
                 int userQuantity = int.Parse(GetUserInput("Input quantity\n"));
                 Cart userCart = new Cart(userItem, inputAmount, userQuantity);
                 ShoppingCart.Add(userCart);
-                string userContinue = GetUserInput("Add another item to your cart?\n");
-                if (userContinue == "y")
-                {
-                    continue;
-                }
-                if (userContinue == "n")
-                {
-                    break;
-                }
             }
-
             foreach (Cart item in ShoppingCart) // We created a temporary variable name for our Person object called 'peep'
             {
-                // In order to access that obect we use our 'peep' object name.
                 item.DisplayCart();
-                Console.WriteLine(); // To space out each object.
+                Console.WriteLine();
             }
-
-
+            Console.WriteLine();
             StreamReader reader = new StreamReader("../../../MenuItems.txt");
             string itemsForSale = reader.ReadLine();
             reader.Close();
             Console.WriteLine(itemsForSale);
 
-
-
             Menu.PrintStore();
-
 
             List<Product> cartOfItems = Product.GetProducts(); // creating a list that will become the shopping cart
             Product sweater = new Product("sweater", "outerwear", "blue cableknit pullover", 14.99); //identifying what the item will be
@@ -102,13 +87,21 @@ namespace MidtermProject
             double salesTax = subtotal * .06;
             double billTotal = subtotal + salesTax;
             PrintCart();
+            //int checkNumber = int.Parse(GetUserInput("Please input your check number"));
+            //Check check1 = new Check(amount, checkNumber);
+            //check1.PayWithCheck();
+            //int cash = int.Parse(GetUserInput("How much are you paying with in cash?"));
+            //Cash cash1 = new Cash(amount, cash);
+            //cash1.GetChange();
 
             Console.WriteLine("======RECEIPT===============");
             Console.WriteLine($"Your subtotal is: {subtotal:c}");
             Console.WriteLine($"MI State sales tax: {salesTax:c}");
             Console.WriteLine($"This brings your total to: {billTotal:c}");
 
-
+            //Console.WriteLine("How do you want to pay?");
+            //string paymentType = Console.ReadLine();
+            //Menu.SelectPayment(paymentType, amount); //<== type in the () method of payment
         }
 
         public static string GetUserInput(string message)

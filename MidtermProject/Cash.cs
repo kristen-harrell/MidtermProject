@@ -29,8 +29,6 @@ namespace MidtermProject
                 }
             }
         }
-            //while (userCash <= Amount)
-
         public double UserCash { get; set; }
         public Cash(double amount, double userCash) : base(amount)
         {
@@ -52,18 +50,6 @@ namespace MidtermProject
                     continue;
                 }
             }
-            //while (userCash <= Amount)  ```````````Brian had this commented out, so I left it this way````````
-
-            //{
-            //    // Payment option question
-            //    if (userCash < Amount)
-            //    {
-            //        Console.WriteLine("Not enough funds. Try a different payment option? [y/n]");
-            //        continue;
-            //    }
-            //    double change = userCash - Amount;
-            //    Console.WriteLine(change);
-            //}
         }
     }
 }
