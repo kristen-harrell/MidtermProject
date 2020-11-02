@@ -11,37 +11,89 @@ namespace MidtermProject
 {
     class Menu
     {
-        //public List<Item> Items { get; set } <== I need to know what the text file list class is called so I can link it in here
+        public List<Product> ItemsForSale { get; set; }
 
-        public static void PrintStore()
+
+        public static void GetShortStore()
         {
-            List<Product> itemsForSale = new List<Product>();
-
-            StreamReader reader = new StreamReader("../../../MenuItems.txt");
-
-            string line = reader.ReadLine();
-            while (line != null)
+            List<Product> itemsForSaleDisplay = Product.GetProducts();
+            StreamWriter writer = new StreamWriter("../../../DisplayMenu.txt"); //gaining access to the file
+            foreach (Product item in itemsForSaleDisplay) //this loop is adding everything to the file
             {
-                string[] itemProperties = line.Split("|");
-
-                itemsForSale.Add(new Product(itemProperties[0], itemProperties[1], itemProperties[2], double.Parse(itemProperties[3])));
-
-                line = reader.ReadLine();
+                writer.WriteLine($"{item.Name,-15}");
             }
-
-            reader.Close();
-
-            int counter = 1; // initializing counter for menu items
-
-            foreach (Product product in itemsForSale)
-            {
-                Console.WriteLine($"{counter}) {product.Name}");
-                counter++; // counter goes up after each iteration
-            }
+            writer.Close(); //all done adding things to the list to display
 
         }
 
+        public static void GetStore()
+        {
+            List<Product> itemsForSaleDisplay = Product.GetProducts();
+            StreamWriter writer = new StreamWriter("../../../DisplayMenu.txt"); //gaining access to the file
+            foreach (Product item in itemsForSaleDisplay) //this loop is adding everything to the file
+            {
+                writer.WriteLine($"{item.Name,-5} |     {item.Category,-5} |     {item.Description,-30} |     {item.Price:c}", -30);
+            }
+            writer.Close(); //all done adding things to the list to display
+            
+        }
 
+
+        public static void PrintStore()
+        {
+            GetStore();
+            List<string> itemsForSale = new List<string>();
+            StreamReader reader = new StreamReader("../../../DisplayMenu.txt");
+            string eachItem = reader.ReadLine();
+            while (eachItem != null)
+            {
+                itemsForSale.Add(eachItem);
+                eachItem = reader.ReadLine();
+            }
+            reader.Close();
+
+            for (int i = 0; i < itemsForSale.Count; i++)
+            {
+                Console.WriteLine($"#{i + 1}:  {itemsForSale[i]}");
+            }
+
+        }
+        public static void PrintShortStore()
+        {
+            GetShortStore();
+            List<string> itemsForSale = new List<string>();
+            StreamReader reader = new StreamReader("../../../DisplayMenu.txt");
+            string eachItem = reader.ReadLine();
+            while (eachItem != null)
+            {
+                itemsForSale.Add(eachItem);
+                eachItem = reader.ReadLine();
+            }
+            reader.Close();
+
+            for (int i = 0; i < itemsForSale.Count; i++)
+            {
+                Console.WriteLine($"#{i + 1}\t {itemsForSale[i]}");
+            }
+
+        }
+        public static string PrintSelectedItem(int choice)
+        {
+            GetStore();
+            List<string> itemsForSale = new List<string>();
+            StreamReader reader = new StreamReader("../../../DisplayMenu.txt");
+            string eachItem = reader.ReadLine();
+            while (eachItem != null)
+            {
+                itemsForSale.Add(eachItem);
+                eachItem = reader.ReadLine();
+            }
+            reader.Close();
+
+            string userChoice = itemsForSale[choice-1];
+
+            return userChoice;
+        }
         //public static void DisplayLineTotal()
         //{
 
