@@ -18,5 +18,16 @@ namespace MidtermProject
             Description = description;
             Price = price;
         }
+
+        public static List<Item> GetItems()
+        {
+            List<Item> itemToBuy = new List<Item>()
+            {
+                new Item("coat", "outerwear", "comfy blue coat", 13.99),
+            };
+
+            return itemToBuy;
+        }
+
     }
 }

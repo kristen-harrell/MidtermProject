@@ -86,5 +86,12 @@ namespace MidtermProject
             string UserInput = Console.ReadLine();
             return UserInput;
         }
+
+        //static string GetReceipt()
+        //{
+        //    Console.WriteLine("Thanks for shopping with us.  Here is your receipt: ");
+
+
+        //}
     }
 }

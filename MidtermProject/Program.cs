@@ -40,20 +40,14 @@ namespace MidtermProject
                 else if (userInput == "y")
                 {
                     Console.WriteLine("Wonderful! How many would you like?");
-                    int quantity = Console.ReadLine();
+                    int quantity = int.Parse(Console.ReadLine());
 
-                    DisplayLineTotal(int quantity);
+                   // DisplayLineTotal(int quantity);
 
                     Console.WriteLine();
                 }
             }
 
-
-            //double salesTax = 0.06;
-            //double amount = 55.76;
-            //double grandTotal = (amount * salesTax) + amount;
-            //Console.WriteLine(grandTotal.ToString("C", CultureInfo.CurrentCulture));
-            //Console.WriteLine();
             List<Cart> ShoppingCart = new List<Cart> { };
             while (true)
             {
@@ -72,26 +66,6 @@ namespace MidtermProject
                     break;
                 }
             }
-            foreach (Cart item in ShoppingCart) // We created a temporary variable name for our Person object called 'peep'
-            {
-                // In order to access that obect we use our 'peep' object name.
-                item.DisplayCart();
-                Console.WriteLine(); // To space out each object.
-            }
-            //for (int i = 0; i < ShoppingCart.Count; i++)
-            //{
-            //    Console.WriteLine(ShoppingCart[i]);
-            //}
-
-            //Sharp Bowtie| Accessories | Dress to impress with this sleek black bowtie(Tuxedo not included) | 32.37
-
-            //Staff Kakashi = new Staff("Kakashi", "1570 Woodward Ave", "Grand Circus: Detroit", 1000000.00);
-            //Staff Sephiroth = new Staff("Sephiroth", "40 Pearl St NW", "Grand Circus: Grand Rapids", 1000000.01);
-
-            //List<Person> PersonList = new List<Person>
-            //{
-            //    Brian, Rachel, Kakashi, Sam, Sephiroth
-            //};
             StreamReader reader = new StreamReader("../../../MenuItems.txt");
             string itemsForSale = reader.ReadLine();
             reader.Close();
@@ -101,49 +75,110 @@ namespace MidtermProject
 
             Menu.PrintStore();
 
+            List<Item> cartOfItems = Item.GetItems(); // creating a list that will become the shopping cart
+            Item sweater = new Item("sweater", "outerwear", "blue cableknit pullover", 14.99); //identifying what the item will be
+            cartOfItems.Add(sweater); //adding it to the list
+            double subtotal = 0; //declaring a variable to keep the customer's running total adding up
+            StreamWriter writer = new StreamWriter("../../../ShoppingCart.txt"); //gaining access to the file
+            foreach (Item item in cartOfItems) //this loop is adding everything to the file
+            {
+                writer.WriteLine($"{item.Name,-15} |     {item.Category,-15} |     {item.Description,-30} |     {item.Price:c}", -30);
+                subtotal += item.Price;
+            }
+            writer.Close(); //all done adding things to the cart
 
-            double amount = 50;
+            double salesTax = subtotal * .06;
+            double billTotal = subtotal + salesTax;
+            PrintCart();
 
-            //int checkNumber = int.Parse(GetUserInput("Please input your check number"));
-            //Check check1 = new Check(amount, checkNumber);
-            //check1.PayWithCheck();
-            //int cash = int.Parse(GetUserInput("How much are you paying with in cash?"));
-            //Cash cash1 = new Cash(amount, cash);
-            //cash1.GetChange();
+            Console.WriteLine("======RECEIPT===============");
+            Console.WriteLine($"Your subtotal is: {subtotal:c}");
+            Console.WriteLine($"MI State sales tax: {salesTax:c}");
+            Console.WriteLine($"This brings your total to: {billTotal:c}");
 
-            //string cardNumber = GetUserInput("Input your card number");
-            //string expiration = GetUserInput("Input the expiration date [MM/YY]");
-            //int securityCw = int.Parse(GetUserInput("Input the security number (CW)"));
-            //Credit credit1 = new Credit(amount, cardNumber, expiration, securityCw);
-            //credit1.PayWithCredit();
-            //Console.WriteLine("Midterm Project");
-
-            //Console.WriteLine("Midterm Project");
-            //Console.WriteLine("Welcome to our store!!");
-            //Console.WriteLine("These are the items that we have available for sale.");
-            ////Menu.PrintStore(); <== this method need to finish getting built
-            ////Menu.GetDetail(); <== this method needs to finish getting built
-
-            //Console.WriteLine("Enter the number of the item that you want to learn more about:  ");
-
-            //Console.WriteLine("How do you want to pay?");
-            //string paymentType = Console.ReadLine();
-            //Menu.SelectPayment(paymentType, amount); //<== type in the () method of payment
         }
+
         public static string GetUserInput(string message)
         {
             Console.WriteLine(message);
             string UserInput = Console.ReadLine();
             return UserInput;
         }
-            //public static void PrintStore()
-            //{
-            //    StreamReader reader = new StreamReader("../../../MenuItems.txt");
-            //    string itemsForSale = reader.ReadLine();
+        //public static void PrintStore()
+        //{
+        //    StreamReader reader = new StreamReader("../../../MenuItems.txt");
+        //    string itemsForSale = reader.ReadLine();
 
 
-            //    reader.Close();
-            //    Console.WriteLine(itemsForSale);
-            //}
+        //    reader.Close();
+        //    Console.WriteLine(itemsForSale);
+        //}
+
+        public static string GetUserInputYN(string message)
+        {
+            Console.WriteLine(message);
+            string userInput = Console.ReadLine().ToLower().Trim();
+            while (userInput != "y" && userInput != "yes" && userInput != "n" && userInput != "no")
+            {
+                Console.WriteLine();
+                Console.WriteLine("Sorry, that entry was not accepted.  Please try again ");
+                Console.WriteLine();
+                Console.WriteLine(message);
+                userInput = Console.ReadLine().ToLower();
+            }
+            if (userInput == "y" || userInput == "yes")
+            {
+                return "y";
+            }
+            else
+            {
+                return "n";
+            }
+        }
+
+        public static int GetUserInput123(string message)
+        {
+            Console.WriteLine(message);
+            int userInput = int.Parse(Console.ReadLine().Trim());
+            while (userInput != 1 && userInput != 2 && userInput != 3)
+            {
+                Console.WriteLine();
+                Console.WriteLine("Sorry, that entry was not accepted.  Please try again ");
+                Console.WriteLine();
+                Console.WriteLine(message);
+                userInput = int.Parse(Console.ReadLine().Trim());
+            }
+            if (userInput == 1)
+            {
+                return 1;
+            }
+            else if (userInput == 2)
+            {
+                return 2;
+            }
+            else
+            {
+                return 3;
+            }
+        }
+
+        public static void PrintCart()
+        {
+            List<string> shoppingCartFull = new List<string>();
+            StreamReader reader = new StreamReader("../../../ShoppingCart.txt");
+            string purchasedItem = reader.ReadLine();
+            while (purchasedItem != null)
+            {
+                shoppingCartFull.Add(purchasedItem);
+                purchasedItem = reader.ReadLine();
+            }
+            reader.Close();
+
+            for (int i = 0; i < shoppingCartFull.Count; i++)
+            {
+                Console.WriteLine($"#{i + 1}:  {shoppingCartFull[i]}");
+            }
+
+        }
     }
 }

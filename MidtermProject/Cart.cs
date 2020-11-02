@@ -26,4 +26,6 @@ namespace MidtermProject
             Console.WriteLine($"Amount: ${ Amount * Quantity }");
         }
     }
+    
+
 }
