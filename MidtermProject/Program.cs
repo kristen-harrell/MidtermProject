@@ -5,33 +5,30 @@ using System.Globalization;
 using System.Linq;
 using System.IO;
 using System.Threading;
+using System.ComponentModel.Design;
 
 namespace MidtermProject
 {
     class Program
     {
-
-
         static void Main(string[] args)
         {
-
             Console.WriteLine("Welcome to our store!!");
             Console.WriteLine("These are the items that we have available for sale.");
 
-            Menu.PrintShortStore();
-
-            List<Cart> ShoppingCart = new List<Cart> { }; //written by Brian - need to take the customer's input (item they picked) and add that to the cart
+            List<Cart> ShoppingCart = new List<Cart>();
+            List<Product> cartOfItems = Product.GetProducts(); 
 
             bool continueShopping = true;
             while (continueShopping == true)
             {
-                //=================================================== Kristen:
+                Menu.PrintShortStore();
                 Console.WriteLine("Please select an item via its corresponding number to learn more about it.");
                 string userInput = Console.ReadLine();
                 int selection = int.Parse(userInput);
                 Console.WriteLine($"You selected item #{selection}:");
-                Console.WriteLine(Menu.PrintSelectedItem(selection));
-                //=====================================================
+                string item = Menu.PrintSelectedItem(selection);
+                Console.WriteLine(item);
                 Console.WriteLine("Would you like to purchase this item?");
                 userInput = Console.ReadLine();
 
@@ -40,151 +37,31 @@ namespace MidtermProject
                     Console.WriteLine("That's OK. Returning to the main menu.");
                     continue;
                 }
-
                 else if (userInput == "y")
                 {
+                    double amount = cartOfItems[selection - 1].Price;
                     Console.WriteLine("Wonderful! How many would you like?");
-
-
-                    //====================================================================================
-                    // this need to add the qty and item to the shopping cart - Brian
-                    //=====================================================================================
-                    Console.WriteLine(); //spacing.
-
-                    string selection1 = "coat"; // userCart.Item
-                    int quantity = int.Parse(Console.ReadLine()); // userCart.Quantity or keep it this way
-                    double amount = 56.99; // userCart.Amount
-
-                    Cart userCart = new Cart(selection1, amount, quantity);
-                    ShoppingCart.Add(userCart);
-                    userCart.DisplayCart();
-                    while (true)
-                    {
-                        string userContinue = GetUserInputYN("Add another item to your cart?\n");
-                        if (userContinue == "y")
-                        {
-                            break;
-                        }
-                        if (userContinue == "n")
-                        {
-                            //Console.WriteLine("Would you like to checkout?"); what to do here
-                            break;
-                        }
-                    }
-
-                }
-
-                Console.WriteLine("Would you like to continue shopping?");
-                if (GetUserInputYN(Console.ReadLine()) == "y")
-                {
-                    continue;
-                }
-                else if (GetUserInputYN(Console.ReadLine()) == "n")
-                {
-                    Console.WriteLine("OK, let's go to the checkout");
+                    int quantity = int.Parse(Console.ReadLine());
                     Console.WriteLine();
-                    continueShopping = false;
+                    Cart userSelected = new Cart(item, amount, quantity);
+                    ShoppingCart.Add(userSelected);
+                    string continueInput = GetUserInputYN("Would you like to continue shopping?");
+                    if (continueInput == "y")
+                    {
+                        continueShopping = true;
+                    }
+                    else if (continueInput == "n")
+                    {
+                        Console.WriteLine("OK, let's go to the checkout");
+                        double grandTotal = DisplayCart(ShoppingCart);
+                        int paymentType = CheckoutUser();
+                        Menu.SelectPayment(paymentType, grandTotal);
+                        Console.WriteLine();
+                    }
                 }
+                Console.Clear();
             }
-
-            //This is the checkout process
-            Console.WriteLine("Here are the items in your cart:");
-            //print the list
-            Console.WriteLine("Here is the total for your order:");
-            //print the grandTotal
-            Console.WriteLine("Please specify payment type:");
-            Console.WriteLine("1: Cash, 2: Credit, 3: Check");
-            int num = GetUserInput123(Console.ReadLine());
-            string paymentType = num.ToString();
-            //Menu.SelectPayment(paymentType, amount);
-            //receipt
-
-
-
-
-            while (true)
-            {
-                //Cart userCart = new Cart(userItem, inputAmount, userQuantity);
-                //ShoppingCart.Add(userCart);
-                string userContinue = GetUserInputYN("Add another item to your cart?\n");
-                if (userContinue == "y")
-                {
-                    continue;
-                }
-                if (userContinue == "n")
-                {
-                    break;
-                }
-
-            }
-
-            {
-               // item.DisplayCart();
-                Console.WriteLine();
-            }
-            Console.WriteLine();
-            StreamReader reader = new StreamReader("../../../MenuItems.txt");
-            string itemsForSale = reader.ReadLine();
-            reader.Close();
-            Console.WriteLine(itemsForSale);
-            //==============================================================================================
-            ///////////////Alex:
-            //Create a checkout 
-            //give total (saved in a Double called grandTotal)
-            //ask for payment type and route it accordingly
-            //done here is your receipt
-
-
-
-            //write method to generate receipt
-
-            //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-            List<Product> cartOfItems = Product.GetProducts(); // creating a list that will become the shopping cart
-            Product sweater = new Product("sweater", "outerwear", "blue cableknit pullover", 14.99); //identifying what the item will be
-
-            cartOfItems.Add(sweater); //adding it to the list
-            double subtotal = 0; //declaring a variable to keep the customer's running total adding up
-            StreamWriter writer = new StreamWriter("../../../ShoppingCart.txt"); //gaining access to the file
-            foreach (Product item in cartOfItems) //this loop is adding everything to the file
-            {
-                writer.WriteLine($"{item.Name,-15} |     {item.Category,-15} |     {item.Description,-30} |     {item.Price:c}", -30);
-                subtotal += item.Price;
-            }
-            writer.Close(); //all done adding things to the cart
-
-            double salesTax = subtotal * .06;
-            double billTotal = subtotal + salesTax;
-            PrintCart();
-
-
-            Console.WriteLine("======RECEIPT===============");
-            Console.WriteLine($"Your subtotal is: {subtotal:c}");
-            Console.WriteLine($"MI State sales tax: {salesTax:c}");
-            Console.WriteLine($"This brings your total to: {billTotal:c}");
-
-            //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-            List<Product> itemToBuy = new List<Product>();
-            {
-                Product Item1 = new Product("coat", "outerwear", "comfy blue coat", 13.99);
-            }
-
         }
-        ////+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-        //List<Item> cartOfItems = Item.GetItems(); // creating a list that will become the shopping cart
-        //Item sweater = new Item("sweater", "outerwear", "blue cableknit pullover", 14.99); //identifying what the item will be
-
-        //cartOfItems.Add(sweater); //adding it to the list
-        //double subtotal = 0; //declaring a variable to keep the customer's running total adding up
-        //StreamWriter writer = new StreamWriter("../../../ShoppingCart.txt"); //gaining access to the file
-        //foreach (Product item in cartOfItems) //this loop is adding everything to the file
-        //{
-        //    writer.WriteLine($"{item.Name,-15} |     {item.Category,-15} |     {item.Description,-30} |     {item.Price:c}", -30);
-        //    subtotal += item.Price;
-        //}
-        //writer.Close(); //all done adding things to the cart
-
-
         public static string GetUserInputYN(string message)
         {
             Console.WriteLine(message);
@@ -206,7 +83,6 @@ namespace MidtermProject
                 return "n";
             }
         }
-
         public static int GetUserInput123(string message)
         {
             Console.WriteLine(message);
@@ -233,41 +109,26 @@ namespace MidtermProject
             }
         }
 
-        public static void PrintCart() //part of the receipt method - WIP
+        public static double DisplayCart(List<Cart> shoppingCart)
         {
-            List<string> shoppingCartFull = new List<string>();
-            StreamReader reader = new StreamReader("../../../ShoppingCart.txt");
-            string purchasedItem = reader.ReadLine();
-            while (purchasedItem != null)
+            double subTotal = 0;
+
+            foreach (var item in shoppingCart)
             {
-                shoppingCartFull.Add(purchasedItem);
-                purchasedItem = reader.ReadLine();
+                subTotal += item.Amount * item.Quantity;
+                Console.WriteLine($"{item.Item} QTY:{item.Quantity}");
             }
-            reader.Close();
-
-            //double salesTax = subtotal * .06;
-            //double billTotal = subtotal + salesTax;
-            //PrintCart();
-            ////int checkNumber = int.Parse(GetUserInput("Please input your check number"));
-            ////Check check1 = new Check(amount, checkNumber);
-            ////check1.PayWithCheck();
-            ////int cash = int.Parse(GetUserInput("How much are you paying with in cash?"));
-            ////Cash cash1 = new Cash(amount, cash);
-            ////cash1.GetChange();
-
-            //Console.WriteLine("======RECEIPT===============");
-            //Console.WriteLine($"Your subtotal is: {subtotal:c}");
-            //Console.WriteLine($"MI State sales tax: {salesTax:c}");
-            //Console.WriteLine($"This brings your total to: {billTotal:c}");
-
-            //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+            Console.WriteLine($"Your sub total is {subTotal:c}");
+            double grandTotal = subTotal * 1.06;
+            Console.WriteLine($"Your grand total is (after tax) {grandTotal:c}");
+            return grandTotal;
         }
-
-
-
-
-
-
+        public static int CheckoutUser()
+        {
+            Console.WriteLine("Please specify payment type:");
+            int num = GetUserInput123("1: Cash, 2: Credit, 3: Check");
+            return num;
+        }
     }
 }
 

@@ -53,5 +53,15 @@ namespace MidtermProject
             return itemsForSale;
         }
 
+        public static double GetPrice(List<object> inputList, int number)
+        {
+            double amount = 0;
+            foreach (Product item in inputList)
+            {
+                amount = item.Price;
+                return amount;
+            }
+            return amount;
+        }
     }
 }

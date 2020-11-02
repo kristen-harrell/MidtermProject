@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Net.Http.Headers;
 using System.Text;
 
@@ -41,7 +42,11 @@ namespace MidtermProject
                 if (userCash >= amount)
                 {
                     double change = userCash - amount;
-                    Console.WriteLine($"Your change is {change}");
+                    Console.WriteLine();
+                    Console.WriteLine("Receipt");
+                    Console.WriteLine("=================");
+                    Console.WriteLine($"Thank you for paying {userCash:c}");
+                    Console.WriteLine($"Your change is {change:c}");
                     return change;
                 }
                 if (userCash < amount)

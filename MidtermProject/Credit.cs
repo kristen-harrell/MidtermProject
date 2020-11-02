@@ -17,7 +17,10 @@ namespace MidtermProject
         }
         public void PayWithCredit()
         {
-            Console.WriteLine($"You've payed the total of {Amount} with credit.");
+            Console.WriteLine();
+            Console.WriteLine("Receipt");
+            Console.WriteLine("=================");
+            Console.WriteLine($"Thank you. You've payed the total of {Amount:c} with credit.");
         }
     }
 }

@@ -13,7 +13,11 @@ namespace MidtermProject
         }
         public void PayWithCheck(double amount, int checkNumber)
         {
-            Console.WriteLine($"You have paid the total of {amount} with Check# {checkNumber}");
+            Console.WriteLine();
+            Console.WriteLine("Receipt");
+            Console.WriteLine("=================");
+            Console.WriteLine($"Thank you for paying {amount:c} through check");
+            Console.WriteLine($"You have paid the total of {amount:c} with Check  #{checkNumber}");
         }
     }
 }

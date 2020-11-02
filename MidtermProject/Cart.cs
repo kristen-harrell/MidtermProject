@@ -19,13 +19,14 @@ namespace MidtermProject
             this.Amount = Amount;
             this.Quantity = Quantity;
         }
-        public void DisplayCart()
+        public double DisplayCart()
         {
             double salesTax = 0.06;
-            Console.WriteLine($"Item: { Item } x {Quantity}");
+            //Console.WriteLine($"Item: { Item } x {Quantity}");
             double total = (Amount * Quantity);
             double totalWithTax = (total * salesTax) + total;
-            Console.WriteLine($"Amount (sales tax included): {totalWithTax:c}");
+            //Console.WriteLine($"Amount (sales tax included): {totalWithTax:c}");
+            return totalWithTax;
         }
     }
     

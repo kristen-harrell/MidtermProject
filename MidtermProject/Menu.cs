@@ -32,10 +32,10 @@ namespace MidtermProject
             StreamWriter writer = new StreamWriter("../../../DisplayMenu.txt"); //gaining access to the file
             foreach (Product item in itemsForSaleDisplay) //this loop is adding everything to the file
             {
-                writer.WriteLine($"{item.Name,-5} |     {item.Category,-5} |     {item.Description,-30} |     {item.Price:c}", -30);
+                writer.WriteLine($"{item.Name} | {item.Category} | {item.Description} | {item.Price:c}");
             }
             writer.Close(); //all done adding things to the list to display
-            
+
         }
 
 
@@ -90,7 +90,7 @@ namespace MidtermProject
             }
             reader.Close();
 
-            string userChoice = itemsForSale[choice-1];
+            string userChoice = itemsForSale[choice - 1];
 
             return userChoice;
         }
@@ -104,31 +104,34 @@ namespace MidtermProject
         //        return to
         //}
 
-        public static void SelectPayment(string paymentType, double amount) //<-- change this from void to payment once it's created 
-                                                                            // in the () you can type the message "how do you want to pay today
-                                                                            //and return that response to then divert to one of these choices
+        public static void SelectPayment(int paymentType, double amount) //<-- change this from void to payment once it's created 
+                                                                         // in the () you can type the message "how do you want to pay today
+                                                                         //and return that response to then divert to one of these choices
         {
 
-                if (paymentType == "1")
-                {
-                    double cash = double.Parse(GetUserInput("How much are you paying with in cash?: "));
-                    Cash cash1 = new Cash(amount, cash);
-                    cash1.GetChange(cash, amount);
-                }
-                if (paymentType == "2")
-                {
-                    string cardNumber = GetUserInput("Input your card number");
-                    string expiration = GetUserInput("Input the expiration date [MM/YY]");
-                    int securityCw = int.Parse(GetUserInput("Input the security number (CW)"));
-                    Credit credit1 = new Credit(amount, cardNumber, expiration, securityCw);
-                    credit1.PayWithCredit();
-                }
-                else if (paymentType == "3")
-                {
-                    int checkNumber = int.Parse(GetUserInput("Please input your check number"));
-                    Check check1 = new Check(amount, checkNumber);
-                    check1.PayWithCheck(amount, checkNumber);
-                }
+            if (paymentType == 1)
+            {
+                double cash = double.Parse(GetUserInput("How much are you paying with in cash?: "));
+                Cash cash1 = new Cash(amount, cash);
+                cash1.GetChange(cash, amount);
+                Console.ReadLine();
+            }
+            if (paymentType == 2)
+            {
+                string cardNumber = GetUserInput("Input your card number");
+                string expiration = GetUserInput("Input the expiration date [MM/YY]");
+                int securityCw = int.Parse(GetUserInput("Input the security number (CW)"));
+                Credit credit1 = new Credit(amount, cardNumber, expiration, securityCw);
+                credit1.PayWithCredit();
+                Console.ReadLine();
+            }
+            else if (paymentType == 3)
+            {
+                int checkNumber = int.Parse(GetUserInput("Please input your check number"));
+                Check check1 = new Check(amount, checkNumber);
+                check1.PayWithCheck(amount, checkNumber);
+                Console.ReadLine();
+            }
         }
         static string GetUserInput(string message)
         {
