@@ -99,10 +99,12 @@ namespace MidtermProject
             return UserInput;
         }
 
+
         public static void GetDetail(List<Product> listOfItems)
         {
             List<Product> itemsForSale;
             //Console.WriteLine($"{counter}) {product.Name}");
         }
+
     }
 }
