@@ -14,14 +14,12 @@ namespace MidtermProject
             bool valid = true;
             while (valid == true)
             {
-                //string paymentType = Console.ReadLine(); //<-- I think we should move this method to the program
                 if (paymentType == "cash")
                 {
                     double cash = double.Parse(GetUserInput("How much are you paying with in cash?: "));
                     Cash cash1 = new Cash(amount, cash);
                     cash1.GetChange(cash, amount);
                 }
-                //pull cash method which will prompt accordingly
                 if (paymentType == "creditCard")
                 {
                     string cardNumber = GetUserInput("Input your card number");
@@ -41,10 +39,6 @@ namespace MidtermProject
                     Console.WriteLine("Sorry. That is not an accepted method of payment. Please try again.");
                     valid = true;
                 }
-                //p ublic static object GetDetail() //<== rename 'object' to Item 
-                //{
-                //    //get the input number that coordinates with the item number and show all the info on it
-                //} 
             }
         }
         static string GetUserInput(string message)

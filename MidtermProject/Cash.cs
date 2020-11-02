@@ -29,8 +29,6 @@ namespace MidtermProject
                 }
             }
         }
-            //while (userCash <= Amount)
-
         public double UserCash { get; set; }
         public Cash(double amount, double userCash) : base(amount)
         {
